@@ -1,65 +1,48 @@
 <template>
-  <div id="app">
-    <!-- <HelloWorld v-bind:title="title2" v-on:result-event="appAction" />
-  <hr>
-  <p>{{result}}</p>
-  <hr> -->
-    <Calc v-bind:title="message" v-on:result-event="appAction" />
+  <div class="hello">
+    <h1>{{title}}</h1>
+    <p>{{message}}</p>
     <hr>
-    <div>
-      <table v-html="log"></table>
-    </div>
+    <p>val: {{val}}</p>
+    <div>*2: <input type="number" v-model="a"></div>
+    <div>^2: <input type="number" v-model="b"></div>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import Calc from './components/Calc.vue'
 
 export default {
-  name: 'app',
-  components: {
-    // HelloWorld,
-    Calc,
+  name: 'HelloWorld',
+  props: {
+    title: String,
   },
   data: function(){
     return {
-      message: "CALC",
-      result: [],
+      message: "check validation",
+      val: 0,
     };
   },
   computed: {
-    log: function(){
-      let table =
-    `<tr>
-      <th class="head">Expression</th>
-      <th class="head">Value</th>
-    </tr>
-    ` 
-    for(let i in this.result){
-      table += 
-      '<tr><td>' + this.result[i][0] + '</td><th>' + this.result[i][1] + '</th></tr>';
-      }
-    return table;
-    }
+    a: {
+      get: function(){
+        return this.val * 2;
+      },
+      set: function(value){
+        this.val = Math.floor(value / 2);
+      },
+    },
+    b: {
+      get: function(){
+        return this.val * this.val;
+      },
+      set: function(value){
+        this.val = Math.floor(Math.sqrt(value));
+      },
+    },
   },
   created: function(){
-    let items = localStorage.getItem('log');
-    let logs = JSON.parse(items);
-    if(logs != null){
-      this.result = logs;
-    }
+    this.val = 10;
   },
-  methods: {
-    appAction: function(exp,res){
-      this.result.unshift([exp,res]);
-      if(this.result.length > 10){
-        this.result.pop();
-      }
-      let log = JSON.stringify(this.result);
-      localStorage.setItem('log',log);
-    }
-  }
 }
 </script>
 
