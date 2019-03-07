@@ -1,9 +1,14 @@
 <template>
   <div class="hello">
     <h1>{{title}}</h1>
-    <pre v-on:click="clear">{{message}}</pre>
+    <pre>{{message}}</pre>
     <hr>
-    <div><input type="text" v-on:keydown="type"></div>
+    <div><input type="text"
+        v-on:keypress="type"
+        @keydown.delete="clear"
+        @keydown.space="space"
+        @keydown.enter="enter">
+    </div>
   </div>
 </template>
 
@@ -20,20 +25,23 @@ export default {
     };
   },
   methods:{
-    type: function() {
+    type: function(event) {
+      if(event.key == 'Enter'){return;}
       this.message += event.key + ' ';
-      if(event.key == "Escape"){
-        this.message = '';
-      }
       event.target.value = '';
     },
     clear: function(){
       this.message = '';
-    }
+    },
+    space: function(){
+      this.message += '_ ';
+    },
+    enter: function(){
+      let res = this.message.split(' ').join('');
+      this.message = res.split('_').join(' ');
+      event.target.value = '';
+    },
   },
-  mounted: function(){
-    this.message = "";
-  }
 }
 </script>
 
@@ -79,5 +87,9 @@ div.in {
   background-color: #ccc;
   width: 100px;
   height: 150px;
+}
+title {
+  padding: 5px 10px;
+  color: orange;
 }
 </style>

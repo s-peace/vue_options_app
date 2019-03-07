@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld title="" />
+    <HelloWorld title="aaa" />
   </div>
 </template>
 
@@ -41,5 +41,8 @@ tr th {
 tr th.head {
   background-color: black;
   color: white;
+}
+h1 {
+  color: orange;
 }
 </style>
