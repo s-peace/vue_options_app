@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld title="validate" />
+    <HelloWorld title="" />
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   },
   data: function(){
     return {
-      message: "validate",
+      message: "",
       num: 99,
     };
   },
