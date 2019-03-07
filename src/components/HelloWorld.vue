@@ -3,11 +3,15 @@
     <h1>{{title}}</h1>
     <pre>{{message}}</pre>
     <hr>
-    <div><input type="text"
-        v-on:keypress="type"
-        @keydown.delete="clear"
-        @keydown.space="space"
-        @keydown.enter="enter">
+    <div>
+      <div class="area"
+        @click="click"
+        @click.exact="exact"
+        @click.shift="shift"
+        @click.ctrl="ctrl"
+        @click.alt="alt">
+        click here!
+        </div>
     </div>
   </div>
 </template>
@@ -25,22 +29,21 @@ export default {
     };
   },
   methods:{
-    type: function(event) {
-      if(event.key == 'Enter'){return;}
-      this.message += event.key + ' ';
-      event.target.value = '';
+    click: function(){
+      this.message = "click ";
     },
-    clear: function(){
-      this.message = '';
+    exact: function(){
+      this.message += "** no any key**";
     },
-    space: function(){
-      this.message += '_ ';
+    shift: function(){
+      this.message +='[shift]';
     },
-    enter: function(){
-      let res = this.message.split(' ').join('');
-      this.message = res.split('_').join(' ');
-      event.target.value = '';
+    ctrl: function(){
+      this.message += '[ctrl]';
     },
+    alt: function(){
+      this.message += '[alt]';
+    }
   },
 }
 </script>
@@ -91,5 +94,12 @@ div.in {
 title {
   padding: 5px 10px;
   color: orange;
+}
+.area {
+  width: 300px;
+  height: 100px;
+  background-color: #ddd;
+  padding: 10px;
+  font-size: 20px;
 }
 </style>
