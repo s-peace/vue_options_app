@@ -5,11 +5,9 @@
     <hr>
     <div>
       <div class="area"
-        @click="click"
-        @click.exact="exact"
-        @click.shift="shift"
-        @click.ctrl="ctrl"
-        @click.alt="alt">
+        @click.left.prevent="left"
+        @click.right.prevent="right"
+        >
         click here!
         </div>
     </div>
@@ -29,21 +27,12 @@ export default {
     };
   },
   methods:{
-    click: function(){
-      this.message = "click ";
+    left: function(){
+      this.message = '[left button]';
     },
-    exact: function(){
-      this.message += "** no any key**";
+    right: function(){
+      this.message = '[right button]';
     },
-    shift: function(){
-      this.message +='[shift]';
-    },
-    ctrl: function(){
-      this.message += '[ctrl]';
-    },
-    alt: function(){
-      this.message += '[alt]';
-    }
   },
 }
 </script>
