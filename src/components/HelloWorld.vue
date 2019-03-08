@@ -3,14 +3,12 @@
     <h1>{{title}}</h1>
     <pre>{{message}}</pre>
     <hr>
-    <div>
-      <div class="area"
-        @click.left.prevent="left"
-        @click.right.prevent="right"
-        >
-        click here!
-        </div>
-    </div>
+    <ul>
+      <li><slot name="a" /></li>
+      <li><slot name="b" /></li>
+      <li><slot name="c" /></li>
+    </ul>
+    <slot />
   </div>
 </template>
 
@@ -23,7 +21,7 @@ export default {
   },
   data: function(){
     return {
-      message: '',
+      message: 'This is message',
     };
   },
   methods:{
@@ -90,5 +88,15 @@ title {
   background-color: #ddd;
   padding: 10px;
   font-size: 20px;
+}
+.inner {
+  color: red;
+  font-size: 14px;
+}
+.etc {
+  color: green;
+  background-color: #eee;
+  font-size: 12px;
+  padding: 5px;
 }
 </style>

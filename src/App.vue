@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <HelloWorld title="aaa" />
+    <HelloWorld title="aaaslot">
+      <p class="etc">Begin!</p>
+      <p slot="a" class="inner">first message</p>
+      <p class="etc">Mid</p>
+      <p slot="b" class="inner">2nd message</p>
+      <p class="etc">End</p>
+      <p slot="c" class="inner">3rd message</p>
+    </HelloWorld>
   </div>
 </template>
 
@@ -44,5 +51,8 @@ tr th.head {
 }
 h1 {
   color: orange;
+}
+p {
+  margin: 0;
 }
 </style>
