@@ -4,7 +4,12 @@
     <p>{{message}}</p>
     <hr>
     <button v-on:click="doAction">{{btn}}</button>
-    <transition name="transit">
+    <transition name="transit"
+      @before-enter="startAction"
+      @before-leave="startAction"
+      @after-enter="endAction"
+      @after-leave="endAction"
+    >
       <p v-if="flg" class="trans">Transition</p>
     </transition>
   </div>
@@ -21,13 +26,27 @@ export default {
     return {
       message: "Transition sample!",
       flg: true,
-      btn: 'Show/Hide',
+      btn: 'Hide',
     }
   },
   methods: {
     doAction: function(){
       this.flg = !this.flg;
     },
+    startAction: function(){
+      if(this.flg){
+        this.message = 'show////';
+      } else {
+        this.message = 'hide////';
+      }
+    },
+    endAction: function(){
+      if(this.flg){
+        this.message = 'show!';
+      } else {
+        this.message = "hide!";
+      }
+    }
   },
 }
 </script>
