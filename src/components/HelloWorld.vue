@@ -3,12 +3,9 @@
     <h1>{{title}}</h1>
     <pre>{{message}}</pre>
     <hr>
-    <ul>
-      <li><slot name="a" /></li>
-      <li><slot name="b" /></li>
-      <li><slot name="c" /></li>
-    </ul>
-    <slot />
+    <ol>
+      <slot />
+    </ol>
   </div>
 </template>
 

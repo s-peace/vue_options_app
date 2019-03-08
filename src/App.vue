@@ -1,12 +1,9 @@
 <template>
   <div id="app">
     <HelloWorld title="aaaslot">
-      <p class="etc">Begin!</p>
-      <p slot="a" class="inner">first message</p>
-      <p class="etc">Mid</p>
-      <p slot="b" class="inner">2nd message</p>
-      <p class="etc">End</p>
-      <p slot="c" class="inner">3rd message</p>
+      <li v-for="obj in slotobjs" v-bind:key="obj.name">
+        {{obj.name}}({{obj.mail}})
+      </li>
     </HelloWorld>
   </div>
 </template>
@@ -21,8 +18,11 @@ export default {
   },
   data: function(){
     return {
-      message: "",
-      num: 99,
+      slotobjs:[
+        {name:'taro',mail:'taro@yamada'},
+        {name:'taro2',mail:'taro@yamada2'},
+        {name:'taro3',mail:'taro@yamada3'},
+      ]
     };
   },
 }
