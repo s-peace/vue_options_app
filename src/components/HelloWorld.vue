@@ -1,11 +1,12 @@
 <template>
   <div class="hello">
     <h1>{{title}}</h1>
-    <pre>{{message}}</pre>
+    <p>{{message}}</p>
     <hr>
-    <ol>
-      <slot />
-    </ol>
+    <button v-on:click="doAction">{{btn}}</button>
+    <transition name="transit">
+      <p v-if="flg" class="trans">Transition</p>
+    </transition>
   </div>
 </template>
 
@@ -18,15 +19,14 @@ export default {
   },
   data: function(){
     return {
-      message: 'This is message',
-    };
+      message: "Transition sample!",
+      flg: true,
+      btn: 'Show/Hide',
+    }
   },
-  methods:{
-    left: function(){
-      this.message = '[left button]';
-    },
-    right: function(){
-      this.message = '[right button]';
+  methods: {
+    doAction: function(){
+      this.flg = !this.flg;
     },
   },
 }
@@ -95,5 +95,31 @@ title {
   background-color: #eee;
   font-size: 12px;
   padding: 5px;
+}
+h1 {
+  color: red;
+}
+.trans {
+  background-color: red;
+  padding: 10px;
+  font-size: 20px;
+}
+.transit-enter-active {
+  transition: opacity 2.0s;
+}
+.transit-leave-active {
+  transition: opacity 2.0s;
+}
+.transit-enter {
+  opacity: 0;
+}
+.transit-enter-to {
+  opacity: 1.0;
+}
+.transit-leave {
+  opacity: 1.0;
+}
+.taransit-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld title="aaaslot">
-      <li v-for="obj in slotobjs" v-bind:key="obj.name">
-        {{obj.name}}({{obj.mail}})
-      </li>
-    </HelloWorld>
+    <HelloWorld v-bind:title="message" />
   </div>
 </template>
 
@@ -18,13 +14,9 @@ export default {
   },
   data: function(){
     return {
-      slotobjs:[
-        {name:'taro',mail:'taro@yamada'},
-        {name:'taro2',mail:'taro@yamada2'},
-        {name:'taro3',mail:'taro@yamada3'},
-      ]
-    };
-  },
+      message: "aaa",
+    }
+  }
 }
 </script>
 
